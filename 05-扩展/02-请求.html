@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>请求</title>
+    <style>
+        html,body{margin: 0;height: 100%}
+        #main{
+            height: 100%;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+<div id="main"></div>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script>
+    /*
+    * json() 请求json
+    * svg() 请求svg
+    *   在then方法中可直接或svg的dom对象
+    * ……
+    * */
+    /*d3.json('./lib/data.json')
+        .then(data=>{
+            console.log(data);
+        })*/
+
+    d3.svg('./lib/flower.svg')
+        .then(dom=>{
+            // console.log(dom);
+            const svg=dom.querySelector('svg')
+            console.log(svg);
+            document.querySelector('#main').append(svg)
+        })
+
+</script>
+</body>
+</html>

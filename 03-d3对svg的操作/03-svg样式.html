@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>svg样式</title>
+    <style>
+        html{height: 100%}
+        body{height: 100%;margin: 0;}
+        svg{background-color: antiquewhite}
+    </style>
+</head>
+<body>
+<!--
+svg 根节点
+    version svg版本
+    width|height svg画布尺寸
+    xmlns 命名空间http://www.w3.org/2000/svg
+-->
+<svg version="1.2"
+     xmlns="http://www.w3.org/2000/svg"
+     width="100%"
+     height="100%"
+>
+    <!--着色区域
+        fill 填充区域，默认black
+        stroke 描边区域，默认none
+    -->
+    <!--<circle cx="300" cy="300" r="200" fill="#00acec"/>-->
+    <!--<circle cx="300" cy="300" r="200" stroke="#00acec" fill="none" stroke-width="10"/>-->
+
+    <!--着色方式
+            纯色
+            渐变色
+                线性渐变
+                径向渐变
+            纹理
+    -->
+    <!--纯色 #000, black, rgb(0,0,0), rgba(0,0,0,1)-->
+    <!--<circle cx="300" cy="300" r="200" fill="#000"/>-->
+    <!--<circle cx="300" cy="300" r="200" fill="black"/>-->
+    <!--<circle cx="300" cy="300" r="200" fill="rgb(0,0,0)"/>-->
+    <!--<circle cx="300" cy="300" r="200" fill="rgba(0,0,0,1)"/>-->
+
+    <!--linearGradient 线性渐变
+            gradientTransform 渐变变换 https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function
+                rotate(a) 旋转[0,360]
+                translate(x,y) 移动
+                scale(sx,sy) 缩放
+        stop 颜色节点
+            offset 偏移量[0,1]
+            stop-color 颜色
+        渐变色的赋值 url(id)
+    -->
+    <!--<linearGradient id="lg" gradientTransform="
+        rotate(30)
+    ">
+        <stop offset="0" stop-color="#00acec"></stop>
+        <stop offset="0.5" stop-color="yellow"></stop>
+        <stop offset="1" stop-color="blue"></stop>
+    </linearGradient>
+    <circle cx="300" cy="300" r="200" fill="url(#lg)"/>-->
+
+    <!--radialGradient 径向渐变
+            stop 颜色节点
+                offset 偏移量[0,1]
+                stop-color 颜色
+    -->
+    <!--<radialGradient id="rg">
+        <stop offset="0" stop-color="#00acec"></stop>
+        <stop offset="0.5" stop-color="yellow"></stop>
+        <stop offset="1" stop-color="red"></stop>
+    </radialGradient>
+    <circle cx="300" cy="300" r="200" fill="url(#rg)"/>-->
+
+    <!--pattern 纹理着色
+            id
+            viewBox 视图框
+            width height 纹理元素的尺寸，建议使用百分百
+        polygon 多边形
+            points 点位，如 0,0 20,50 0,100 50,80 100,100 80,50 100,0 50,20
+        image
+            href 图片地址
+            x|y 位置
+            widht|height 宽高
+    -->
+    <polygon points="0,0 20,50 0,100 50,80 100,100 80,50 100,0 50,20"></polygon>
+
+    <!--<pattern id="pt"
+             width="10%"
+             height="10%"
+             viewBox="0 0 100 100"
+    >
+        <polygon points="0,0 20,50 0,100 50,80 100,100 80,50 100,0 50,20"></polygon>
+    </pattern>-->
+    <pattern id="pt"
+             width="50%"
+             height="50%"
+             viewBox="0 0 100 100"
+    >
+        <image href="./images/rose.jpg"
+               width="100"
+               height="100"
+        ></image>
+    </pattern>
+    <circle cx="300" cy="300" r="200" fill="url(#pt)"/>
+
+</svg>
+</body>
+</html>

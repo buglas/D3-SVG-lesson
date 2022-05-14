@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>样式</title>
+    <style>
+        body{background-color: #faf5ea}
+        h1{text-align: center}
+        p{
+            text-align: center;
+            font-size: 24px;
+        }
+        .sky{
+            color: #00acec;
+        }
+    </style>
+</head>
+<body>
+<h1 id="title">沁园春·长沙</h1>
+<article id="cont">
+    <p>独立寒秋，湘江北去，橘子洲头。</p>
+    <p>看万山红遍，层林尽染；漫江碧透，百舸争流。</p>
+    <p>鹰击长空，鱼翔浅底，万类霜天竞自由。</p>
+    <p>怅寥廓，问苍茫大地，谁主沉浮？</p>
+    <p>携来百侣曾游。忆往昔峥嵘岁月稠。</p>
+    <p>恰同学少年，风华正茂；书生意气，挥斥方遒。</p>
+    <p>指点江山，激扬文字，粪土当年万户侯。</p>
+    <p>曾记否，到中流击水，浪遏飞舟？</p>
+</article>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script>
+    /*设置dom样式
+    *   style 内联样式
+    *   classed 增|删class
+    *   attr 设置属性，会覆盖以前的属性值
+    *       class
+    *       style
+    *       ……
+    * */
+    /*选择标题元素*/
+    const title=d3.select('#title');
+
+    /*style() 方法设置标题颜色*/
+    // title.style('color','#00acec')
+    // title.style('font-size','48px')
+
+    /*attr() 方法通过对style 属性的设置，改变标题颜色*/
+    // title.attr('style','color:red')
+
+    /*classed(class,true|false) 方法增删标题的class*/
+    // title.classed('sky',true)
+    // title.classed('sky',false)
+    // title.classed('a',true)
+    // title.classed('b',true)
+
+    /*attr() 方法设置class属性*/
+    // title.attr('class','sky')
+
+    /*用style的回调函数，让所有p元素偶数行变蓝*/
+    d3.selectAll('p')
+        .style('color',(ele,ind)=>ind%2?'#00acec':'#000')
+
+    /*用data数据绑定，动态设置p元素字体大小*/
+    // const data=[12,14,16,18,24,28,32,38]
+    const data=[12,14,16,18,24,28,32,38,48,52]
+    // const data=[12,14,16,18]
+    d3.selectAll('p')
+        .data(data)
+        .style('font-size',(ele)=>{
+            console.log(ele);
+            return ele+'px'
+        })
+</script>
+</body>
+</html>

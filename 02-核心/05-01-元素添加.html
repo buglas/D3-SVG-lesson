@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dom增删改查</title>
+    <style>
+        body{background-color: #faf5ea
+        }
+        h1{text-align: center}
+        p{
+            text-align: center;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+<h1 id="title">沁园春·长沙</h1>
+<article id="cont"></article>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script>
+    const arr=[
+        '作者：毛主席',
+        '独立寒秋，湘江北去，橘子洲头。',
+        '看万山红遍，层林尽染；漫江碧透，百舸争流。',
+        '鹰击长空，鱼翔浅底，万类霜天竞自由。',
+        '怅寥廓，问苍茫大地，谁主沉浮？',
+        '携来百侣曾游。忆往昔峥嵘岁月稠。',
+        '恰同学少年，风华正茂；书生意气，挥斥方遒。',
+        '指点江山，激扬文字，粪土当年万户侯。',
+        '曾记否，到中流击水，浪遏飞舟？'
+    ]
+    //内容元素
+    const cont=d3.select('#cont');
+
+    /*添加DOM 元素
+    *   append 在当前选择集的最后追加指定名称的子元素
+    *   insert 前置元素，可声明在哪个元素前前置元素
+    *   data+join 以完全覆盖的方式添加元素
+    *   data+enter+append 以差值的方式添加元素
+    * */
+    /*
+    * append()，向cont中添加p元素
+    * text()设置元素文本内容
+    * */
+    cont.append('p')
+        .text('独立寒秋，湘江北去，橘子洲头。------')
+        .attr('id','p1')
+
+
+    /*insert(要添加的元素，在哪个元素之前添加)
+    * 在第一句的前面添加作者
+    * */
+    cont.insert('p','#p1')
+        .text('作者：毛主席')
+
+    /*selectAll() 选择所有的p元素
+    * data() 绑定数据
+    * join() 基于数据添加p元素
+    * text(d=>d) 设置DOM元素内容为数据内容
+    * */
+    /*cont.selectAll('p')
+        .data(arr)
+        .join('p')
+        .text(ele=>ele)*/
+
+
+
+    /*selectAll() 选择所有的p元素
+    * data() 绑定数据
+    * enter() 将数据和已有DOM元素做插值运算
+    * append() 基于插值结果添加p元素
+    * text(d=>d) 设置DOM元素内容为数据内容
+    * */
+    cont.selectAll('p')
+        .data(arr)
+        .enter()
+        .append('p')
+        .text(ele=>ele)
+
+
+
+</script>
+</body>
+</html>

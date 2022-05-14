@@ -1,0 +1,136 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>机器人-svg</title>
+    <style>
+        html{height: 100%}
+        body{height: 100%;margin: 0;}
+        svg{background-color: antiquewhite}
+    </style>
+</head>
+<body>
+<svg version="1.2"
+     xmlns="http://www.w3.org/2000/svg"
+     width="100%"
+     height="100%"
+     viewBox="-400 -400 800 800"
+>
+    <!--面部填充 rect
+            x|y 位置
+            width|height 尺寸
+            fill 填充色
+    -->
+    <rect x="-200"
+          y="0"
+          width="400"
+          height="200"
+          fill="red"
+          stroke="#000"
+          stroke-width="40"
+    ></rect>
+
+
+    <!--面部描边 rect
+            fill 填充色，none为无色
+            stroke 描边色
+            stroke-width 线宽
+    -->
+    <!--<rect x="-200"
+          y="0"
+          width="400"
+          height="200"
+          fill="none"
+          stroke="#000"
+          stroke-width="40"
+    ></rect>-->
+
+
+    <!--眼罩 rect-->
+    <rect x="-200"
+          y="50"
+          width="400"
+          height="60"
+          fill="antiquewhite"
+    ></rect>
+
+
+    <!--嘴巴 path
+            d 路径
+                M 起点
+                L 下一个点
+    -->
+    <path d="
+            M
+            -100 150
+            L
+            100 150
+    "
+          fill="none"
+          stroke="#000"
+          stroke-width="40"
+    ></path>
+
+
+    <!--左眼睛 circle
+            cx|cy 圆心位
+            r 半径
+    -->
+    <circle r="20"
+            cx="-100"
+            cy="80"
+            fill="red"
+    ></circle>
+
+    <!--右眼睛 path
+            d 路径
+                M 起点
+                A 圆弧
+                    rx ry 半径
+                    x-axis-rotation x轴方向
+                    large-arc-flag 是否显示最大弧
+                    sweep-flag 弧在哪一侧
+                    x y 结束点
+    -->
+    <path d="
+            M
+            80 90
+            A
+            20 20
+            0
+            0
+            1
+            120 90
+    "
+          fill="red"
+    ></path>
+
+
+    <!--天线 path
+            d 路径
+                C 三次贝塞尔
+                    cpx1 cpy1 控制点1
+                    cpx2 cpy2 控制点2
+                    x y 结束点
+                S 三次贝塞尔曲线的延续
+                    cpx2 cpy2 控制点2
+                    x y 结束点
+    -->
+    <path d="
+            M
+            -200 -200
+            C
+            -100 -200
+            -100 0
+            0 0
+            S
+            100 -200
+            200 -200
+    "
+          fill="none"
+          stroke="#000"
+          stroke-width="40"
+
+    ></path>
+</svg>
+</body>
+</html>

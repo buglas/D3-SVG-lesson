@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选择</title>
+    <style>
+        body{background-color: #faf5ea}
+        h1{text-align: center}
+        p{
+            text-align: center;
+            font-size: 24px;
+        }
+        .sky{
+            color: #00acec;
+        }
+    </style>
+</head>
+<body>
+<h1 id="title">沁园春·长沙</h1>
+<article id="cont">
+    <p>独立寒秋，湘江北去，橘子洲头。</p>
+    <p>看万山红遍，层林尽染；漫江碧透，百舸争流。</p>
+    <p>鹰击长空，鱼翔浅底，万类霜天竞自由。</p>
+    <p>怅寥廓，问苍茫大地，谁主沉浮？</p>
+    <p>携来百侣曾游。忆往昔峥嵘岁月稠。</p>
+    <p>恰同学少年，风华正茂；书生意气，挥斥方遒。</p>
+    <p>指点江山，激扬文字，粪土当年万户侯。</p>
+    <p>曾记否，到中流击水，浪遏飞舟？</p>
+</article>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script>
+    /*1-选择的依据
+    *   通过css选择器选择
+    *   通过dom对象选择
+    * */
+    /*select 选择'#title'*/
+    /*const title=d3.select('#title').attr('class','sky')
+    console.log(title.node());*/
+
+    /*select 选择第一个p元素*/
+    // d3.select('p').attr('class','sky')
+
+
+    /*
+    * 用原生js获取title元素
+    * select选择title元素
+    * */
+    /*d3.select('#cont').on('click',({target})=>{
+        if(target.tagName==='P'){
+            d3.select(target).attr('class','sky')
+        }
+    })*/
+
+
+    /*2-多选*/
+    /*selectAll 选择所有p元素*/
+    // d3.selectAll('p').attr('class','sky')
+
+
+    /*3-过滤多选的元素
+    *   filter((ele,ind)=>{}) 可基于节点元素或节点的索引进行过滤
+    *   filter(':nth-child(n)') 基于元素的索引位置过滤
+    * */
+    /*d3.selectAll('p')
+        .filter(':nth-child(3)')
+        .attr('class','sky')*/
+    d3.selectAll('p')
+        .filter((ele,ind)=>{
+            return ind%3
+        })
+        .attr('class','sky')
+
+</script>
+</body>
+</html>

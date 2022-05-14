@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>格式化</title>
+</head>
+<body>
+<div id="main"></div>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script>
+    /*
+    *  format()数字格式化，如保留小数点后n位浮点数
+    *   .1f 保留小数点后1位浮点数
+    *   .2f 保留小数点后2位浮点数
+    *  timeFormat() 时间格式化
+    *   %Y 年
+    *   %m 月
+    *   %d 日
+    *   %H 时
+    *   %M 分
+    *   %S 秒
+    * */
+    const f=d3.format('.4f')
+    for(let i=0;i<10;i++){
+        const n1=0.1*i
+        // console.log(n1);
+        const n2=f(n1)
+        // console.log(n2);
+        // console.log(typeof  n2);
+        const n3=parseFloat(n2)
+        /*console.log(n3);
+        console.log(typeof n3);*/
+    }
+
+    const dt=new Date()
+    // console.log(dt);
+
+    const tf=d3.timeFormat('%Y-%m-%d %H:%M:%S')
+    console.log(tf(dt));
+
+
+</script>
+</body>
+</html>

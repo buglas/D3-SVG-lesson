@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>y轴</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        #main{
+            margin: 20px;
+            width: 600px;
+            height: 600px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<div id="main"></div>
+<script src="https://d3js.org/d3.v6.js"></script>
+<script>
+    /*===========1-必备数据===========*/
+    /*数据源source：两个系列的数据*/
+    const source=[
+        //html css js
+        [30,   20, 40],//学习人数
+        [40,   30, 50]//就业人数
+    ]
+
+    /*===========1-建立容器对象===========*/
+    /*获取main 容器*/
+    const main=d3.select('#main')
+
+    /*声明绘图框尺寸
+        width 宽度，600
+        height 高度，600
+    */
+    const width=600
+    const height=600
+
+    /*建立svg 对象
+    *   svg 画布尺寸100%充满容器对象
+    *   绘图框尺寸按照600设置
+    * */
+    const svg=main.append('svg')
+        .attr('version',1.2)
+        .attr('xmlns','http://www.w3.org/2000/svg')
+        .attr('width','100%')
+        .attr('height','100%')
+        .attr('viewBox',`0 0 ${width} ${height}`)
+
+
+    /*===========3-建立基础数据===========*/
+    /*计算数据源中所有数据的极值 maxY
+    *   用js原生方法flat()展开数据源，再通过max()方法取极值
+    * */
+    const maxY=Math.max(...source.flat())
+    // console.log(maxY);
+
+    /*声明y轴在图表坐标系中的数据起点和结束点 yChartRange*/
+    const yChartRange=[0,maxY]
+
+    /*声明y轴在像素坐标系中的数据起点和结束点 yPixelRange*/
+    const yPixelRange=[height-50,50]
+
+
+
+    /*===========4-建立y 轴比例尺 yScale===========*/
+    /*
+    * 用scaleLinear()方法建立线性比例尺 yScale
+    * 用domain()方法在比例尺中写入图表数据yChartRange
+    * range()方法在比例尺中写入像素数据，即像素的起始位和结束位yPixelRange
+    * */
+    const yScale=d3.scaleLinear()
+        .domain(yChartRange)
+        .range(yPixelRange)
+
+
+    /*===========5-建立y 轴对象===========*/
+    /*基于比例尺yScale，用axisLeft()方法创建刻度朝左的坐标轴生成器 yAxisGenerator*/
+    const yAxisGenerator=d3.axisLeft(yScale)
+
+    /*利用坐标轴生成器生成坐标轴
+    *   在svg中append 加入g 对象
+    *   用attr()方法设置transform 属性中的translate位置
+    *   用call()方法调用xAxisGenerator轴生成器，生成坐标轴
+    *   用style()方法设置字体大小
+    * */
+    svg.append('g')
+        .attr('transform','translate(50 0)')
+        .call(yAxisGenerator)
+        .selectAll('text')
+        .attr('font-size','12px')
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

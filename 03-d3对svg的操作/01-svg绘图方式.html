@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>svg绘图方式</title>
+    <style>
+        html{height: 100%}
+        body{
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        svg{
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+<!--
+svg 根节点
+    version svg版本
+    xmlns 命名空间http://www.w3.org/2000/svg
+    width|height svg画布尺寸，如400,400
+    viewBox 视图框，总会在画布中完全显示，其中的图形会基于视图框的宽高按比例显示
+rect 矩形，如 0 0 400 400
+-->
+<svg version="1.2"
+    xmlns="http://www.w3.org/2000/svg"
+     width="600"
+     height="800"
+     viewBox="
+        -200 -200
+        400 400
+        "
+>
+    <rect width="400" height="400" x="-200" y="-200"></rect>
+    <rect width="200"
+          height="200"
+          fill="red"
+          x="-200"
+          y="-200"
+    ></rect>
+    <circle r="50" cx="0" cy="0" fill="green"></circle>
+</svg>
+</body>
+</html>

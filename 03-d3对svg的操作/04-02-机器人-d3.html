@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>机器人-d3</title>
+    <style>
+        html{height: 100%}
+        body{height: 100%;margin: 0;}
+        #main{
+            width: 100%;
+            height: 100%;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+<div id="main"></div>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script>
+    /*获取main 容器*/
+    const main=d3.select('#main')
+
+    /*在main容器中建立svg，并设置其相关属性*/
+    /*const svg=main.append('svg')
+        .attr('version','1.2')
+        .attr('xmlns','http://www.w3.org/2000/svg')
+        .attr('width','100%')
+        .attr('height','100%')
+        .attr('viewBox','-400 -400 800 800')*/
+
+    const svg=Draw(main)('svg',{
+        version:'1.2',
+        xmlns:'http://www.w3.org/2000/svg',
+        width:'100%',
+        height:'100%',
+        viewBox:'-400 -400 800 800',
+    })
+
+
+    /*建立绘图函数Draw，以dom容器为参，返回绘图方法
+    *   绘图方法以图形shape和配置项option为参
+    *       用append方法向容器中添加图形obj
+    *       用for……of……的方法，遍历Object.entries(配置项)的键值对
+    *       用attr方法设置图形obj的属性
+    *       返回图形obj
+    * */
+    function Draw(dom){
+        return function(shape,option){
+            const obj=dom.append(shape)
+            for(let [key,val] of Object.entries(option)){
+                obj.attr(key,val)
+            }
+            return obj
+        }
+    }
+
+
+    /*建立以svg为容器的绘图方法draw*/
+    const draw=Draw(svg)
+
+
+    /*绘制图形……*/
+    draw('rect',{
+        x:-200,
+        y:0,
+        width:400,
+        height:200,
+        fill:'red',
+        stroke:'#000',
+        'stroke-width':40,
+    })
+
+    draw('rect',{
+        x:-200,
+        y:50,
+        width:400,
+        height:60,
+        fill:'antiquewhite',
+    })
+
+    draw('path',{
+        d:`
+            M
+            -100 150
+            L
+            100 150
+        `,
+        fill:'none',
+        stroke:'#000',
+        'stroke-width':40,
+    })
+
+    draw('circle',{
+        r:20,
+        cx:-100,
+        cy:80,
+        fill:'red',
+    })
+
+    draw('path',{
+        d:`
+            M
+            80 90
+            A
+            20 20
+            0
+            0
+            1
+            120 90
+        `,
+        fill:'red',
+    })
+
+
+    draw('path',{
+        d:`
+            M
+            -200 -200
+            C
+            -100 -200
+            -100 0
+            0 0
+            S
+            100 -200
+            200 -200
+        `,
+        fill:'none',
+        stroke:'#000',
+        'stroke-width':40,
+    })
+
+</script>
+</body>
+</html>

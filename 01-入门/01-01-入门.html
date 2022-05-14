@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>入门</title>
+    <style>
+        html,body{margin: 0;height: 100%}
+        #main{
+            height: 100%;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+<!--svg容器对象-div-->
+<div id="main"></div>
+<!--引入d3-->
+<script src="https://lib.baomitu.com/d3/6.2.0/d3.js"></script>
+<script>
+    /*需求：
+    *   建立一个小球
+    *   鼠标划入时，变色
+    *   鼠标划出时，恢复原本颜色
+    * */
+
+    /*select() 方法选择容器*/
+    const main=d3.select('#main')
+    console.log(main);
+
+    /*向容器中添加svg*/
+    const svg=main.append('svg')
+        .attr('width','100%')
+        .attr('height','100%')
+
+    /*向svg中添加一个圆circle
+    *    attr() 属性设置
+    *       cx|cy 圆心位
+    *       r 半径
+    *       fill
+    *    style() 内联样式设置
+    *       cursor 光标形状
+    *           pointer 小手
+    * */
+    const circle=svg.append('circle')
+        .attr('r',100)
+        .attr('cx',300)
+        .attr('cy',200)
+
+
+    /*用on方法监听鼠标划入图形事件mouseover
+    *   attr 方法改变小球填充色fill
+    * */
+    circle.on('mouseover',()=>{
+        circle.attr('fill','#00acec')
+    })
+
+
+    /*用on方法监听鼠标划出图形事件mouseout
+    *   attr 方法改变小球填充色fill
+    * */
+    circle.on('mouseout',()=>{
+        circle.attr('fill','#000')
+    })
+
+</script>
+</body>
+</html>

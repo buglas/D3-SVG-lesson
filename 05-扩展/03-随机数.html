@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>随机数</title>
+    <style>
+        html,body{margin: 0;height: 100%}
+        #main{
+            height: 100%;
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+<div id="main"></div>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script>
+    /*
+    * randomInt 随机整数
+    * randomUniform 随机小数
+    * */
+    /*const randomI=d3.randomInt(5,10)
+    // console.log(randomI());
+
+    const randomU=d3.randomUniform(3,6)
+    console.log(randomU());*/
+
+    /*随机大小，随机位置，随机颜色的小球*/
+    const main=d3.select('#main')
+    const [width,height]=[window.innerWidth,window.innerHeight]
+    const svg=main.append('svg')
+        .attr('width','100%')
+        .attr('height','100%')
+
+    const randomWidth=d3.randomInt(width)
+    const randomHeight=d3.randomInt(height)
+    const randomSize=d3.randomInt(1,9)
+    const randomColor=d3.randomInt(0,255)
+
+    const data=[]
+    for(let i=0;i<100;i++){
+        data[i]={
+            x:randomWidth(),
+            y:randomHeight(),
+            z:randomSize(),
+            c:`rgb(${randomColor()},${randomColor()},${randomColor()})`
+        }
+    }
+
+    svg.selectAll('circle')
+        .data(data)
+        .join('circle')
+        .attr('cx',d=>d.x)
+        .attr('cy',d=>d.y)
+        .attr('r',d=>d.z)
+        .attr('fill',d=>d.c)
+
+</script>
+</body>
+</html>

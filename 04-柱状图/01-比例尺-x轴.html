@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>x轴</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        #main{
+            margin: 20px;
+            width: 600px;
+            height: 600px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<div id="main"></div>
+<script src="https://d3js.org/d3.v6.js"></script>
+<script>
+    /*===========1-必备数据===========*/
+    /*categories 类目数据*/
+    const categories=['html','css','js'];
+
+
+    /*===========2-建立容器对象===========*/
+    /*获取main 容器*/
+    const main=d3.select('#main')
+
+
+    /*声明绘图框尺寸
+        width 宽度，600
+        height 高度，600
+    */
+    const [width,height]=[600,600]
+
+    /*建立svg 对象
+    *   svg 画布尺寸100%充满容器对象
+    *   绘图框尺寸按照600设置
+    * */
+    const svg=main.append('svg')
+        .attr('version',1.2)
+        .attr('xmlns','http://www.w3.org/2000/svg')
+        .attr('width','100%')
+        .attr('height','100%')
+        .attr('viewBox',`0 0 ${width} ${height}`)
+
+
+
+    /*===========3-建立基础数据===========*/
+    /*计算类目数量 len*/
+    const len=categories.length
+
+    /*用range()方法，基于类目数量，获取x轴的在图表坐标系中的数据 xChartData，如[0,1,2]*/
+    const xChartData=d3.range(len)
+    console.log(xChartData);
+
+    /*x轴在像素坐标内的起始点和结束点 xPixelRange，左右各偏移50*/
+    const xPixelRange=[50,width-50]
+
+
+
+    /*===========4-建立x 轴比例尺 xScale===========*/
+    /*
+    * 用scaleBand()方法建立分段比例尺 xScale
+    * 用domain()方法在比例尺中写入图表数据xChartData
+    * 用rangeRound()方法在比例尺中写入像素数据，即像素的起始位和结束位xPixelRange
+    * */
+    const xScale=d3.scaleBand()
+        .domain(xChartData)
+        .rangeRound(xPixelRange)
+
+
+    /*===========5-建立x 轴对象===========*/
+    /*基于比例尺xScale，用axisBottom()方法创建刻度朝下的坐标轴生成器 xAxisGenerator*/
+    const xAxisGenerator=d3.axisBottom(xScale)
+
+    /*利用坐标轴生成器绘制坐标轴
+    *   在svg中append 加入g 对象
+    *   用attr() 方法设置transform 属性中的translate位置
+    *   用call()方法调用xAxisGenerator轴生成器，生成坐标轴
+    *   用selectAll()方法选择所有的text文本
+    *   用text()方法将图表数据设置为类目数据
+    *   用style()方法设置字体大小
+    * */
+    svg.append('g')
+        .attr('transform',`translate(0 ${height-50})`)
+        .call(xAxisGenerator)
+        .selectAll('text')
+        .text((ele,ind)=>categories[ind])
+        .style('font-size','12px')
+
+</script>
+</body>
+</html>

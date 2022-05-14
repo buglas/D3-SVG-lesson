@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>属性</title>
+    <style>
+        body{background-color: #faf5ea}
+        .question{
+            padding: 30px;
+            width: 60%;
+            margin: auto;
+        }
+        .title{
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .opt{
+            display: block;
+            line-height: 36px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="question">
+    <p class="title">《沁园春·长沙》里的诗句有哪些？</p>
+    <label>
+        <input type="checkbox" checked> 独立寒秋，湘江北去，橘子洲头。
+    </label>
+    <label>
+        <input type="checkbox" checked> 看万山红遍，层林尽染；
+    </label>
+    <label>
+        <input type="checkbox" checked> 好好学习，天天向上。
+    </label>
+</div>
+
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script>
+    /*设置dom属性
+    *   attr 设置普通的内置属性和自定义属性
+    *   property 设置特殊的内置属性
+    * */
+    /*attr 为所有label元素添加class样式*/
+    d3.selectAll('label').attr('class','opt')
+
+    /*用js取消复选框的选择
+    *   selectAll() 选择所有input元素
+    *   filter((ele,ind)=>{}) 基于元素索引位置过滤
+    *   property() 方法设置checked属性
+    * */
+    d3.selectAll('input')
+        .filter((ele,ind)=>ind===2)
+        .property('checked',false)
+        // .attr('checked',false)
+
+
+
+</script>
+</body>
+</html>

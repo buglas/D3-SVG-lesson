@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>svg样式</title>
+    <style>
+        html{height: 100%}
+        body{height: 100%;margin: 0;}
+        svg{background-color: antiquewhite}
+    </style>
+</head>
+<body>
+<svg version="1.2"
+     xmlns="http://www.w3.org/2000/svg"
+     width="100%"
+     height="100%"
+>
+    <pattern id="pt"
+             width="100%"
+             height="100%"
+             viewBox="0 0 100 100"
+    >
+        <rect width="100" height="33" fill="#ff0000"></rect>
+        <rect width="100" height="34" y="33" fill="#00ff00"></rect>
+        <rect width="100" height="33" y="67" fill="#0000ff"></rect>
+    </pattern>
+    <circle cx="300" cy="300" r="200" fill="url(#pt)"/>
+
+</svg>
+</body>
+</html>

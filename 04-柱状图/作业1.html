@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>机器人</title>
+    <style>
+        html{height: 100%}
+        body{height: 100%;margin: 0;}
+        #main{
+            width: 100%;
+            height: 100%;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+<div id="main"></div>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script>
+    const red='red';
+    const sky='#00acec';
+    const black='#000';
+    const strokeWidth=40;
+
+    const main=d3.select('#main');
+
+    const svg=Draw(main)('svg',{
+        version:'1.1',
+        xmlns:'http://www.w3.org/2000/svg',
+        width:'100%',
+        height:'100%',
+        viewBox:'-400 -400 800 800'
+    })
+
+    const draw=Draw(svg);
+    const rectCom={
+        x:-200,
+        y:0,
+        width:400,
+        height:200,
+    }
+    draw('rect',{
+        ...rectCom,
+        fill:red
+    });
+    draw('rect',{
+        ...rectCom,
+        fill:'none',
+        stroke:black,
+        'stroke-width':strokeWidth
+    });
+    draw('rect',{
+        x:-200,
+        y:50,
+        width:400,
+        height:60,
+        fill:'antiquewhite',
+    });
+    draw('path',{
+        d:'M-100,140 Q0,170 100,140',
+        stroke:black,
+        'stroke-width':strokeWidth
+    });
+    draw('circle',{
+        cx:-100,
+        cy:80,
+        r:20,
+        fill:sky
+    });
+
+    draw('path',{
+        d:`
+           M
+           80,90
+           A
+           20 20
+           0
+           0
+           1
+           120,90
+        `,
+        fill:sky
+    });
+    draw('path',{
+        d:`
+            M
+            -200,-200
+            C
+            -100,-200
+            -100,0
+            0,0
+            S
+            100,-200
+            200,-200
+        `,
+        fill:'none',
+        stroke:black,
+        'stroke-width':strokeWidth,
+        'stroke-dasharray':'40'
+
+    });
+
+
+    function Draw(svg){
+        return function(shape,option={}){
+            const obj=svg.append(shape);
+            for(const [key,val] of Object.entries(option)){
+                obj.attr(key,val);
+            }
+            return obj;
+        }
+    }
+</script>
+</body>
+</html>
